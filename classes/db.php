@@ -2,14 +2,16 @@
 
 class db
 {
-    private static $host = "localhost";
-    private static $dbName = "tpPhp";
-    private static $username = "alabh";
+    private static $host = "tpwebphp.mysql.database.azure.com";
+    private static $dbName = "tpphp";
+    private static $username = "tpweb@tpwebphp";
+    private static $password = "Samir.sp6";
     private static $db;
+    private static $options=[PDO::MYSQL_ATTR_SSL_KEY    => '/ssl/BaltimoreCyberTrustRoot.crt.pem'];
     private static function init()
     {
         try {
-            self::$db = new PDO("mysql:host=" . self::$host . ";dbname=" . self::$dbName, self::$username, getenv("password"));
+            self::$db = new PDO("mysql:host=" . self::$host . ";dbname=" . self::$dbName, self::$username,self::$password,self::$options);
             self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (Exception $e) {
             // echo "<pre>" . print_r($e, true) . "</pre>";
