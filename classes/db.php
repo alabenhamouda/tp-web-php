@@ -2,14 +2,14 @@
 
 class db
 {
-    private static $host = "localhost";
-    private static $dbName = "tpPhp";
-    private static $username = "alabh";
     private static $db;
     private static function init()
     {
         try {
-            self::$db = new PDO("mysql:host=" . self::$host . ";dbname=" . self::$dbName, self::$username, getenv("password"));
+            require __DIR__ . '/../vendor/autoload.php';
+            $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
+            $dotenv->load();
+            self::$db = new PDO("mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
             self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (Exception $e) {
             // echo "<pre>" . print_r($e, true) . "</pre>";

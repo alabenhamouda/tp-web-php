@@ -9,6 +9,12 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $confirmPassword = $_POST['confirmPassword'];
 
+if (empty($email) || empty($password) || empty($confirmPassword)) {
+    $_SESSION['ErrorMessage'] = "Please fill in the credentials";
+    header("location: signup.php");
+    exit();
+}
+
 if (strcmp($password, $confirmPassword) != 0) {
     $_SESSION['ErrorMessage'] = "Passwords don't match!";
     header("location: signup.php");
