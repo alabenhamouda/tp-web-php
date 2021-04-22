@@ -3,6 +3,7 @@
 class db
 {
     private static $db;
+    private static $options = [PDO::MYSQL_ATTR_SSL_KEY    => '/ssl/BaltimoreCyberTrustRoot.crt.pem'];
     private static function init()
     {
         try {
