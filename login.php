@@ -10,14 +10,14 @@ include_once('fragments/header.php');
             </span>
             <a href="signup.php">Sing Up?</a>
         </div>
-        <form action="">
+        <form action="processLogin.php" method="POST">
             <div class="form-group">
                 <label for="email">Email address:</label>
-                <input required type="email" class="form-control" placeholder="Enter email" id="email">
+                <input required name="email" type="email" class="form-control" placeholder="Enter email" id="email">
             </div>
             <div class="form-group">
                 <label for="pwd">Password:</label>
-                <input required type="password" class="form-control" placeholder="Enter password" id="pwd">
+                <input required name="password" type="password" class="form-control" placeholder="Enter password" id="pwd">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

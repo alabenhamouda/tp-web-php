@@ -3,6 +3,7 @@ include_once 'autoload.php';
 session_start();
 if (isset($_SESSION['userId'])) {
     header("location: /");
+    exit();
 }
 
 $email = $_POST['email'];
@@ -31,6 +32,9 @@ if (strcmp($password, $confirmPassword) != 0) {
             header("location: signup.php");
         } else {
             $user->insert(array("email" => $email, "password" => $password));
+            $lastId = db::lastInsertId();
+            $attr = 'LAST_INSERT_ID()';
+            $_SESSION['userId'] = $lastId->$attr;
             $_SESSION['message'] = "Successfully registred!";
             header("location: /");
         }

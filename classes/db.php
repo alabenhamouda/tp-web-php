@@ -43,4 +43,8 @@ class db
         $response = self::exec($request, ...$params);
         return $response->fetch(PDO::FETCH_OBJ);
     }
+    public static function lastInsertId()
+    {
+        return self::fetch("SELECT LAST_INSERT_ID();");
+    }
 }
