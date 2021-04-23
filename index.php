@@ -36,11 +36,9 @@ $people = $peopleTable->findByUserId($_SESSION['userId']);
         }
         ?>
         <div class="col-sm-3">
-            <div class="card">
                 <a href="addPerson.php">
                     <img src="assets/images/add.png" alt="add Person" class="img-thumbnail">
                 </a>
-            </div>
         </div>
     </div>
 </div>
