@@ -10,7 +10,7 @@ class db
             require __DIR__ . '/../vendor/autoload.php';
             $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
             $dotenv->load();
-            self::$db = new PDO("mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
+            self::$db = new PDO("mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'],self::$options);
             self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (Exception $e) {
             // echo "<pre>" . print_r($e, true) . "</pre>";
@@ -42,6 +42,11 @@ class db
     {
         $response = self::exec($request, ...$params);
         return $response->fetch(PDO::FETCH_OBJ);
+    }
+    public static function fetchd($request, ...$params)
+    {
+        self::exec($request, ...$params);
+        
     }
     public static function lastInsertId()
     {

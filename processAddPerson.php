@@ -20,6 +20,12 @@ if(!ctype_digit($cin) || strlen($cin) != 8) {
     header("location: addPerson.php");
     exit();
 }
+$people = new People();
+if($people->findPeoplebyCin($cin))
+{
+    $_SESSION['ErrorMessage'] = "Cin is already in use!";
+    header("location: createpeople.php");  
+}
 
 if($_FILES['photo']['error'] != 0){
     $_SESSION['ErrorMessage'] = "There is an error with the image";

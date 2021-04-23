@@ -11,4 +11,11 @@ class People extends Table
     {
         return db::fetchAll("SELECT * FROM people WHERE user_id = ?;", $id);
     }
+    public function deleteById($id) {
+       db::fetchd("DELETE FROM people WHERE id=?",$id);
+    }
+    public function findPeoplebyCin($cin)
+    {
+        return db::fetch("SELECT * FROM people WHERE cin = ?",$cin);
+    }
 }
