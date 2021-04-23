@@ -7,4 +7,8 @@ class People extends Table
     {
         parent::__construct("people");
     }
+    public function findByUserId($id)
+    {
+        db::fetchAll("SELECT * FROM people WHERE user_id = ?", $id);
+    }
 }

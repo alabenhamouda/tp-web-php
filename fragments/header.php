@@ -12,6 +12,6 @@
 
 <body>
     <?php
-    include_once('fragments/navbar.php');
+    // include_once('fragments/navbar.php');
     include_once('displayMessage.php');
     ?>

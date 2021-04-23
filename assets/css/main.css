@@ -42,3 +42,9 @@ button[type="submit"] {
     margin: 10px auto;
     margin-bottom: 0;
 }
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
