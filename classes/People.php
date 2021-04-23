@@ -18,4 +18,13 @@ class People extends Table
     {
         return db::fetch("SELECT * FROM people WHERE cin = ?",$cin);
     }
+    public function findPeoplebyCin2($cin,$id)
+    {
+        return db::fetch("SELECT * FROM people WHERE cin = ? AND id !=?",$cin,$id);
+    }
+
+    public function update($data)
+    {
+        db::exec("UPDATE people SET name=?, photo=?, cin=? where id=?",...array_values($data));
+    }
 }
