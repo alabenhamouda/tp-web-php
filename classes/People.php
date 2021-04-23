@@ -9,6 +9,6 @@ class People extends Table
     }
     public function findByUserId($id)
     {
-        db::fetchAll("SELECT * FROM people WHERE user_id = ?", $id);
+        return db::fetchAll("SELECT * FROM people WHERE user_id = ?;", $id);
     }
 }

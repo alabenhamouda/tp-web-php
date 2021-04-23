@@ -1,6 +1,9 @@
 <?php
 $title = "Login";
 include_once('fragments/header.php');
+if(isset($_SESSION['userId'])){
+    header("location: index.php");
+}
 ?>
 <div class="content">
     <div class="login">

@@ -5,6 +5,7 @@ include_once('isAuthenticated.php');
 include_once('autoload.php');
 $peopleTable = new People();
 $people = $peopleTable->findByUserId($_SESSION['userId']);
+//echo "<pre>" . var_dump($people) . "</pre>";
 ?>
 <div class="container">
     <div class="row header-row">
@@ -17,7 +18,7 @@ $people = $peopleTable->findByUserId($_SESSION['userId']);
         <?php
         foreach($people as $person){
         ?>
-            <div class="col-sm-3">
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-2">
                 <div class="card">
                     <img src="<?= $person->photo ?>" alt="Person image" class="card-img-top">
                     <div class="card-body">
@@ -25,19 +26,21 @@ $people = $peopleTable->findByUserId($_SESSION['userId']);
                         <p class="card-text">
                             Person with the national identity card of number <?= $person->cin ?>
                         </p>
-                        <a href="editPerson.php?id=<?= $person->id ?>" class="btn btn-primary">Edit</a>
-                        <form action="deletePerson.php?id=<?= $person->id ?>">
-                            <button type="submit" class="btn btn-danger" name="submit">Delete</button>
-                        </form>
+                        <div class="card-foot">
+                            <a href="editPerson.php?id=<?= $person->id ?>" class="btn btn-primary">Edit</a>
+                            <form action="deletePerson.php?id=<?= $person->id ?>" method="POST">
+                                <button type="submit" class="btn btn-danger" name="submit">Delete</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         <?php
         }
         ?>
-        <div class="col-sm-3">
-                <a href="addPerson.php">
-                    <img src="assets/images/add.png" alt="add Person" class="img-thumbnail">
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-2">
+                <a href="addPerson.php" class="add-person">
+                    <img src="assets/images/add.png" alt="add Person">
                 </a>
         </div>
     </div>

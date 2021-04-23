@@ -48,3 +48,37 @@ button[type="submit"] {
     justify-content: space-between;
     align-items: center;
 }
+
+.add-person {
+    display: block;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.add-person img {
+    width: 100%;
+}
+
+.card{
+    height: 100%;
+}
+.card-img-top {
+    flex-grow: 1;
+}
+.card-body {
+    flex-grow: 0;
+}
+
+.card-foot{
+    display: flex;
+    /*justify-content: space-between;*/
+    /*align-items: center;*/
+    /*flex-wrap: wrap;*/
+}
+.card-foot form{
+    margin: 0 0 0 5px;
+}
+.card-foot button{
+    margin: 0;
+}
