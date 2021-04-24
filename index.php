@@ -22,9 +22,9 @@ $people = $peopleTable->findByUserId($_SESSION['userId']);
                 <div class="card">
                     <img src="<?= $person->photo ?>" alt="Person image" class="card-img-top">
                     <div class="card-body">
-                        <h5 class="card-title"><?= $person->name ?></h5>
+                        <h5 class="card-title"><?= htmlspecialchars($person->name) ?></h5>
                         <p class="card-text">
-                            Person with the national identity card of number <?= $person->cin ?>
+                            Person with the national identity card of number <?= htmlspecialchars($person->cin) ?>
                         </p>
                         <div class="card-foot">
                             <a href="editPerson.php?id=<?= $person->id ?>" class="btn btn-primary">Edit</a>
