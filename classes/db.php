@@ -4,13 +4,30 @@ class db
 {
     private static $db;
     private static $options = [PDO::MYSQL_ATTR_SSL_KEY    => '/ssl/BaltimoreCyberTrustRoot.crt.pem'];
+    private static $host;
+    private static $name;
+    private static $username;
+    private static $password;
     private static function init()
     {
         try {
-            require __DIR__ . '/../vendor/autoload.php';
-            $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
-            $dotenv->load();
-            self::$db = new PDO("mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_NAME'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'],self::$options);
+            if(file_exists(".env")){
+                require __DIR__ . '/../vendor/autoload.php';
+                $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../");
+                $dotenv->load();
+                self::$host = $_ENV['DB_HOST'];
+                self::$name = $_ENV['DB_NAME'];
+                self::$username = $_ENV['DB_USERNAME'];
+                self::$password = $_ENV['DB_PASSWORD'];
+            } else {
+                self::$host = getenv('DB_HOST');
+                self::$name = getenv('DB_NAME');
+                self::$username = getenv('DB_USERNAME');
+                self::$password = getenv('DB_PASSWORD');
+            }
+            self::$db = new PDO("mysql:host=" . self::$host .
+                ";dbname=" . self::$name, self::$username,
+                self::$password, self::$options);
             self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (Exception $e) {
             // echo "<pre>" . print_r($e, true) . "</pre>";
